@@ -19,7 +19,17 @@ if errorlevel 1 (
 
 start "RPG15 Server" cmd /k "cd /d ""%PROJECT_DIR%"" && http-server --proxy http://localhost -p 8080"
 timeout /t 2 /nobreak >nul
-start "" "http://localhost:8080/?sn=202604150001"
+if exist "%ProgramFiles%\Google\Chrome\Application\chrome.exe" (
+  start "" "%ProgramFiles%\Google\Chrome\Application\chrome.exe" --new-window --start-fullscreen "http://localhost:8080/?sn=202604150001"
+) else if exist "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe" (
+  start "" "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe" --new-window --start-fullscreen "http://localhost:8080/?sn=202604150001"
+) else if exist "%LocalAppData%\Google\Chrome\Application\chrome.exe" (
+  start "" "%LocalAppData%\Google\Chrome\Application\chrome.exe" --new-window --start-fullscreen "http://localhost:8080/?sn=202604150001"
+) else if exist "%ProgramFiles%\Microsoft\Edge\Application\msedge.exe" (
+  start "" "%ProgramFiles%\Microsoft\Edge\Application\msedge.exe" --new-window --start-fullscreen "http://localhost:8080/?sn=202604150001"
+) else (
+  start "" "http://localhost:8080/?sn=202604150001"
+)
 @REM เปลี่ยนทsnที่ต้องการ
 
 endlocal

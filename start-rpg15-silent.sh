@@ -31,7 +31,7 @@ fullscreen_with_f11() {
 
   (
     sleep 2
-    for cls in google-chrome Google-chrome chromium Chromium chromium-browser; do
+    for cls in firefox Firefox google-chrome Google-chrome chromium Chromium chromium-browser; do
       wid="$(xdotool search --onlyvisible --class "$cls" 2>/dev/null | tail -n 1 || true)"
       if [[ -n "$wid" ]]; then
         xdotool windowactivate "$wid" key F11 >/dev/null 2>&1 || true
@@ -41,7 +41,11 @@ fullscreen_with_f11() {
   ) >/dev/null 2>&1 &
 }
 
-if command -v google-chrome >/dev/null 2>&1; then
+if command -v firefox >/dev/null 2>&1; then
+  # Firefox opens window first, then fullscreen is toggled via F11.
+  nohup firefox --new-window "$URL" >/dev/null 2>&1 &
+  fullscreen_with_f11
+elif command -v google-chrome >/dev/null 2>&1; then
   nohup google-chrome --new-window --start-fullscreen "$URL" >/dev/null 2>&1 &
   fullscreen_with_f11
 elif command -v google-chrome-stable >/dev/null 2>&1; then
@@ -53,9 +57,6 @@ elif command -v chromium-browser >/dev/null 2>&1; then
 elif command -v chromium >/dev/null 2>&1; then
   nohup chromium --new-window --start-fullscreen "$URL" >/dev/null 2>&1 &
   fullscreen_with_f11
-elif command -v firefox >/dev/null 2>&1; then
-  # Firefox has no reliable start-fullscreen flag like Chromium; open normally.
-  nohup firefox --new-window "$URL" >/dev/null 2>&1 &
 else
   xdg-open "$URL" >/dev/null 2>&1 || true
 fi
