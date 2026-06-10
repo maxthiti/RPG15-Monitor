@@ -51,3 +51,5 @@ log "Installed Linux autostart: $DESKTOP_FILE"
 log "Launcher: $LAUNCHER"
 log "Done"
 # cd ~/Thitipong/RPG15-School/RPG15 chmod +x install-startup-rpg15-linux.sh start-rpg15-silent.sh ./install-startup-rpg15-linux.sh
+# cat ~/.config/autostart/rpg15-autostart.desktop
+# cat ~/.local/bin/rpg15-autostart.sh
