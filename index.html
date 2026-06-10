@@ -17,6 +17,12 @@
             overflow: hidden;
         }
 
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
         :root {
             --blue-900: #2a478f;
             --blue-700: #4f6480;
@@ -39,7 +45,7 @@
         }
 
         #app.container-fluid {
-            height: 100vh;
+            height: 100dvh;
             padding-top: 8px;
             padding-bottom: 8px;
         }
