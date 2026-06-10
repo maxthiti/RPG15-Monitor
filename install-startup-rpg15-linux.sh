@@ -34,5 +34,4 @@ EOF
 
 echo "Installed Linux autostart: $DESKTOP_FILE"
 echo "Launcher: $LAUNCHER"
-# chmod +x install-startup-rpg15-linux.sh start-rpg15-silent.sh
-# ./install-startup-rpg15-linux.sh
+# cd ~/Thitipong/RPG15-School/RPG15 chmod +x install-startup-rpg15-linux.sh start-rpg15-silent.sh ./install-startup-rpg15-linux.sh
